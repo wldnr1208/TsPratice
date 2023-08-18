@@ -22,7 +22,7 @@ export default function Form({ title }) {
     required: "필수 필드입니다.",
     minLength: {
       value: 6,
-      message: "최소 6자입니다",
+      message: "최소 6자입니다.",
     },
   };
   return (

@@ -2,16 +2,18 @@ import React from "react";
 import styles from "./Form.module.scss";
 import { useForm } from "react-hook-form";
 
-export default function Form({ title }) {
+export default function Form({ title, getDataForm, firebaseError }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({ mode: "onCange" });
+  } = useForm({ mode: "onChange" });
 
   const onSubmit = ({ email, password }) => {
     console.log(email, password);
+    getDataForm(email, password);
+    reset();
   };
 
   const userEmail = {
@@ -53,7 +55,9 @@ export default function Form({ title }) {
         )}
       </div>
       <button type="submit">{title}</button>
-      <span className={styles.form_error}></span>
+      {firebaseError && (
+        <span className={styles.form_error}>{firebaseError}</span>
+      )}
     </form>
   );
 }

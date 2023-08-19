@@ -3,8 +3,11 @@ import Form from "../../../components/form/Form";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from "../../../firebase";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../../store/user/user.slice";
 
 export default function SignIn() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [firebaseError, setFirebaseError] = useState("");
 
@@ -12,10 +15,22 @@ export default function SignIn() {
 
   const handleLogin = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((user) => {
+      .then((userCredential) => {
+        dispatch(
+          setUser({
+            email: userCredential.user.email,
+            token: userCredential.user.refreshToken,
+            id: userCredential.user.uid,
+          })
+        );
         navigate("/");
       })
       .catch((error) => {
+        console.error(
+          "Firebase Authentication Error:",
+          error.code,
+          error.message
+        );
         return (
           error && setFirebaseError("이메일 또는 비밀번호가 잘못되었습니다.")
         );

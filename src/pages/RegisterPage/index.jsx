@@ -1,6 +1,8 @@
 import React from "react";
 import SignUp from "./sign-up/SignUp";
 
+import { Link } from "react-router-dom";
+
 export default function RegisterPage() {
   return (
     <div className="page">
@@ -8,7 +10,7 @@ export default function RegisterPage() {
         <h1>회원가입</h1>
         <SignUp />
         <p>
-          이미 계정이 있습니까?<Link to={"/login"}>가입하기</Link>
+          이미 계정이 있습니까? <Link to={"/register"}>로그인</Link>
         </p>
       </div>
     </div>

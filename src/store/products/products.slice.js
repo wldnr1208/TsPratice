@@ -3,9 +3,19 @@ import axios from "axios";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
-  async (thunkAPI) => {
+  async (category, thunkAPI) => {
+    console.log(thunkAPI);
     try {
-      const response = await axios.get("https://fakestoreapi.com/products");
+      let response;
+      if (category) {
+        //category가 있을 때
+        response = await axios.get(
+          `https://fakestoreapi.com/products/category/${category}`
+        );
+      } else {
+        response = await axios.get("https://fakestoreapi.com/products");
+      }
+      console.log(11111, response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue("Error loading products");

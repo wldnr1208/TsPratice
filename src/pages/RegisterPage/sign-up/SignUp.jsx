@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import app from "../../../firebase";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../store/user/user.slice";
+import { setUserId } from "../../../store/cart/cart.slice";
 
 export default function SignUp() {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export default function SignUp() {
             id: userCredential.user.uid,
           })
         );
+        dispatch(setUserId(userCredential.user.uid));
         navigate("/");
       })
       .catch((error) => {

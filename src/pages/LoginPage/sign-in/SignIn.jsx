@@ -5,6 +5,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from "../../../firebase";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../store/user/user.slice";
+import { setUserId } from "../../../store/cart/cart.slice";
 
 export default function SignIn() {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export default function SignIn() {
             id: userCredential.user.uid,
           })
         );
+        dispatch(setUserId(userCredential.user.uid));
         navigate("/");
       })
       .catch((error) => {

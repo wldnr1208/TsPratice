@@ -6,7 +6,9 @@ import { addToCart } from "../../../store/cart/cart.slice";
 
 export default function CardItem({ item }) {
   const { products } = useAppSelector((state) => state.cartSlice);
+  console.log(products);
   const productMatching = products.some((product) => product.id === item.id);
+
   const dispatch = useAppDispatch();
 
   const addItemToCart = () => {

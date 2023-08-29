@@ -1,10 +1,10 @@
 import React from "react";
 import { useAppSelector } from "../../../hooks/redux";
 import CartItem from "./cart-item/CartItem";
-import styles from "./CartList.module.scss";
+import styles from "./CardList.module.scss";
 
 export default function CardList() {
-  const { products } = useAppSelector((state) => state.cartSlice);
+  const { products } = useAppSelector((state) => state.productsSlice);
 
   return (
     <div className={styles.cart_list}>

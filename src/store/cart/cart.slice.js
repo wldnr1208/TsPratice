@@ -6,7 +6,7 @@ const initialState = {
     : [],
   totalPrice: 0,
   userId: localStorage.getItem("userId")
-    ? JSON.parse(localStorage.getItem("userIds"))
+    ? JSON.parse(localStorage.getItem("userId"))
     : "",
 };
 
@@ -29,14 +29,14 @@ export const cartSlice = createSlice({
         total: action.payload.price,
       });
 
-      localStorage.setItem("cartProducts", JSON.stringify(state.userId));
+      localStorage.setItem("cartProducts", JSON.stringify(state.products));
     },
-    deleteFroCart: (state, action) => {
+    deleteFromCart: (state, action) => {
       state.products = state.products.filter(
         (item) => item.id !== action.payload
       );
 
-      localStorage.setItem("cartProducts", JSON.stringify(state.userId));
+      localStorage.setItem("cartProducts", JSON.stringify(state.products));
     },
 
     decrementProduct: (state, action) => {
@@ -68,7 +68,6 @@ export const cartSlice = createSlice({
         (acc, item) => (acc += item.total),
         0
       );
-      return state;
     },
   },
 });

@@ -1,19 +1,20 @@
 import React from "react";
 import { useAppDispatch } from "../../../../hooks/redux";
-import {
-  decrementProduct,
-  deleteFromCart,
-  incrementProduct,
-} from "../../../../store/cart/cart.slice";
+
 import styles from "./CartItem.module.scss";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import {
+  decrementProduct,
+  deleteFroCart,
+  incrementProduct,
+} from "../../../../store/cart/cart.slice";
 
 const CartItem = ({ item }) => {
   const dispatch = useAppDispatch();
 
   const deleteProduct = () => {
-    dispatch(deleteFromCart(item.id));
+    dispatch(deleteFroCart(item.id));
   };
 
   const incrementCount = () => {

@@ -68,6 +68,7 @@ export const cartSlice = createSlice({
         (acc, item) => (acc += item.total),
         0
       );
+      return state;
     },
   },
 });

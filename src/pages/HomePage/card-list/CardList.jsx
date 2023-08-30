@@ -13,9 +13,11 @@ const CardList = () => {
   const catagory = useAppSelector((state) => state.categoriesSlice);
 
   useEffect(() => {
-    dispatch(fetchProducts(catagory.toLowerCase()));
+    dispatch(fetchProducts(catagory?.toLowerCase()));
   }, [catagory]);
+
   if (isLoading) return <CardSkeleton />;
+
   return (
     <ul className={styles.card_list}>
       {products.map((product) => (

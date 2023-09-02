@@ -1,16 +1,29 @@
-import React from "react";
+import React, { FC } from "react";
 import styles from "./Form.module.scss";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 
-export default function Form({ title, getDataForm, firebaseError }) {
+type Inputs = {
+  email: string;
+  password: string;
+};
+
+type FormProps = {
+  title: string;
+  getDataForm: (email: string, password: string) => void;
+  firebaseError: string;
+};
+
+const Form: FC<FormProps> = ({ title, getDataForm, firebaseError }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({ mode: "onChange" });
+  } = useForm<Inputs>({
+    mode: "onChange",
+  });
 
-  const onSubmit = ({ email, password }) => {
+  const onSubmit: SubmitHandler<FieldValues> = ({ email, password }) => {
     console.log(email, password);
     getDataForm(email, password);
     reset();
@@ -60,4 +73,6 @@ export default function Form({ title, getDataForm, firebaseError }) {
       )}
     </form>
   );
-}
+};
+
+export default Form;

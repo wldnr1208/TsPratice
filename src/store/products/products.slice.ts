@@ -1,19 +1,22 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { IProduct } from "./products.type";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
-  async (category, thunkAPI) => {
+  async (category: string, thunkAPI) => {
     console.log(thunkAPI);
     try {
       let response;
       if (category) {
         //category가 있을 때
-        response = await axios.get(
+        response = await axios.get<IProduct[]>(
           `https://fakestoreapi.com/products/category/${category}`
         );
       } else {
-        response = await axios.get("https://fakestoreapi.com/products");
+        response = await axios.get<IProduct[]>(
+          "https://fakestoreapi.com/products"
+        );
       }
       console.log(11111, response);
       return response.data;
@@ -23,7 +26,13 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
-const initialState = {
+type ProductsType = {
+  products: IProduct[];
+  isLoading: boolean;
+  error: string;
+};
+
+const initialState: ProductsType = {
   products: [],
   isLoading: false,
   error: "",
@@ -44,7 +53,7 @@ export const productsSlice = createSlice({
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
   },
 });

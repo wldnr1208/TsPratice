@@ -16,3 +16,10 @@ export const store = configureStore({
     orderSlice,
   },
 });
+
+//const dispatch = useAppDispatch();
+
+//const { product, isLoading } = useAppSelector((state) => state.productSlice);
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

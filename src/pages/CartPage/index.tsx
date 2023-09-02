@@ -2,7 +2,7 @@ import React from "react";
 import { useAppSelector } from "../../hooks/redux";
 import CartEmpty from "../../components/cart-empty/CartEmpty";
 import Checkout from "./checkout/Checkout";
-import CartList from "../CartPage/cart-list/CartList";
+import CartList from "./cart-list/CartList";
 export default function CartPage() {
   const { products } = useAppSelector((state) => state.cartSlice);
   return (

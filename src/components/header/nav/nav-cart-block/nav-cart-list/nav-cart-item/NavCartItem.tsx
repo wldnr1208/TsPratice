@@ -4,8 +4,13 @@ import { useAppDispatch } from "../../../../../../hooks/redux";
 import { deleteFroCart } from "../../../../../../store/cart/cart.slice";
 import { Link } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
+import { IProduct } from "../../../../../../store/products/products.type";
 
-export default function NavCartItem({ item }) {
+type NavCartItemProps = {
+  item: IProduct;
+};
+
+export default function NavCartItem({ item }: NavCartItemProps) {
   const dispatch = useAppDispatch();
 
   const deleteProduct = () => {

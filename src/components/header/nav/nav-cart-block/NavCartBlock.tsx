@@ -6,12 +6,12 @@ import NavCartList from "./nav-cart-list/NavCartList";
 import { Link } from "react-router-dom";
 
 export default function NavCartBlock() {
-  const { totalPrice, product } = useAppSelector((state) => state.cartSlice);
+  const { totalPrice, products } = useAppSelector((state) => state.cartSlice);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getTotalPrice(product));
-  }, []);
+    dispatch(getTotalPrice());
+  }, [products]);
 
   return (
     <div className={styles.nav_cart_block}>

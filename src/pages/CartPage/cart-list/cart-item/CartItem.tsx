@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { useAppDispatch } from "../../../../hooks/redux";
 
 import styles from "./CartItem.module.scss";
@@ -9,8 +9,13 @@ import {
   deleteFroCart,
   incrementProduct,
 } from "../../../../store/cart/cart.slice";
+import { IProduct } from "../../../../store/products/products.type";
 
-const CartItem = ({ item }) => {
+type CartItemProps = {
+  item: IProduct;
+};
+
+const CartItem: FC<CartItemProps> = ({ item }) => {
   const dispatch = useAppDispatch();
 
   const deleteProduct = () => {

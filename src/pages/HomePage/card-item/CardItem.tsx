@@ -3,8 +3,13 @@ import styles from "./CardItem.module.scss";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { addToCart } from "../../../store/cart/cart.slice";
+import { IProduct } from "../../../store/products/products.type";
 
-export default function CardItem({ item }) {
+type CardItemProps = {
+  item: IProduct;
+};
+
+export default function CardItem({ item }: CardItemProps) {
   const { products } = useAppSelector((state) => state.cartSlice);
   console.log(products);
   const productMatching = products.some((product) => product.id === item.id);
